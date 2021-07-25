@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+
+</style>
+
+<script>
+
+var expanded = false;
+
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "block";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+
+
+</script>
+<body>
+    <div class="container border border-1" >
+        <center><h1 class="bg-danger">Multi select checkbox use </h1></center>
+        <div class="row">
+
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+
+               <!-- update sample type details -->
+
+<form class="row g-3" action="{{ route('update_samples_details') }}" method="POST" enctype="multipart/form-data">
+    
+    
+    
+        
+        
+          <div class="form-group mb-3">
+              
+              <label for="branch_name" class="mb-1"> Company Id :</label>
+              <input type="text" class="form-control mb-1" id="company_id" placeholder="Enter Company Id" name="company_id" required>
+              
+           </div>
+    
+           <div class="form-group mb-3">
+                <label for="path_lab_name" class="form-label">Path Lab Name :</label>
+                <input type="text" class="form-control" id="path_lab_name" name="path_lab_name" placeholder="Enter Path Lab Name" required>
+           </div>
+    
+          <div class="form-group mb-5">
+                <label for="path_lab_name" class="form-label">Sample Types :</label>
+    
+        <div class="selectBox p-5" onclick="showCheckboxes()">
+          <select class="form-select form-control" aria-label="Default select example">
+            <option>Select Sample Type</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        <div id="checkboxes">
+        <label for="one" class="p-1">
+            <!-- if you want recieve data from data base -->
+            <!-- <input type="checkbox" <?php if($sampdetail->Blood == 'Blood') { echo 'checked'; } ?> id="one" name="Blood" value="Blood" />&nbsp Blood</label> -->
+            <!-- if you want recieve data from data base end-->
+
+            <input type="checkbox"  id="one" name="Blood" value="Blood" />&nbsp Blood</label>
+          <label for="two" class="p-1">
+            <input type="checkbox" id="two" name="Urine" value="Urine" /> &nbsp Urine</label>
+          <label for="three" class="p-1">
+            <input type="checkbox" id="three" name="Stool" value="Stool" /> &nbsp Stool</label>
+            
+        </div>
+      
+      </div>
+    
+      <div class="col-12" class="modal-footer">
+          <button type="submit" class="btn btn-primary px-5">Update</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     </div>
+    
+     </div>   
+    
+    </form>
+                
+</div>
+
+            <div class="col-md-3"></div>
+
+        </div>
+   
+</div>
+</body>
+</html>
